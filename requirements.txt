@@ -1,0 +1,13 @@
+# pip install -r requirements.txt
+
+transformers
+langchain
+openai
+unstructured
+tiktoken
+faiss-cpu
+sentence_transformers
+pypdf
+langchain-community
+langchain-huggingface
+flask
