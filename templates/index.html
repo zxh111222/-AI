@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>基于文心大模型的物理知识问答AI</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f9ff; margin: 0; padding: 0; }
+        .container { width: 80%; margin: auto; padding: 20px; }
+        .input-section, .output-section { margin: 20px 0; padding: 10px}
+        .button { background-color: #007bff; color: white; border: none; padding: 10px; cursor: pointer; }
+        .button:hover { background-color: #0056b3; }
+        .response { background-color: #e9ecef; padding: 15px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>基于文心大模型的物理知识问答AI</h2>
+    <div class="input-section">
+        <input type="text" id="question" placeholder="请输入问题..." style="width: 100%; padding: 10px;">
+        <button class="button" onclick="getAnswer()">提交问题</button>
+    </div>
+    <div class="output-section">
+        <h3>回答:</h3>
+        <div id="response" class="response"></div>
+    </div>
+</div>
+
+<script>
+    function getAnswer() {
+        const question = document.getElementById('question').value;
+        fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: question })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('response').innerText = data.answer;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
